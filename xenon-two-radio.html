@@ -4,7 +4,7 @@
 <link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
 <link rel="import" href="../paper-styles/color.html">
 
-<dom-module id="xenon-bool-input">
+<dom-module id="xenon-two-radio">
     <template>
         <style is="custom-style">
             .error-show { color: var(--paper-input-container-invalid-color, --error-color); visibility: visible; }
@@ -13,22 +13,29 @@
             :host[invalid]>#error{visibility:visible;}
         </style>
         <paper-radio-group selected="{{selected}}" required="{{required}}">
-            <paper-radio-button name="yes" id="yesbtn">Yes</paper-radio-button>
-            <paper-radio-button name="no" id="nobtn">No</paper-radio-button>
+            <paper-radio-button name="yes" id="yesbtn">[[agree]]</paper-radio-button>
+            <paper-radio-button name="no" id="nobtn">[[decline]]</paper-radio-button>
         </paper-radio-group>
         <div id="error" class="error-hidden">[[errorMessage]]</div>
     </template>
     <script>
         Polymer({
-            is: "xenon-bool-input",
+            is: "xenon-two-radio",
             properties: {
-                value: { type: Boolean, notify: true, observer: "_setValue" },
+                agree: String,
+                decline: String,
+                selected: { type: String, notify: true, observer: "_setToggle" },
+                value: { type: Boolean, notify: true, observer: "_setValue", reflectToAttribute: true },
                 errorMessage: { type: String, notify: true, value: "Please select an option" },
                 required: { type: Boolean, notify: true, reflectToAttribute: true },
             },
             behaviors: [
                 Polymer.IronFormElementBehavior
             ],
+            _setToggle: function (selected) {
+                if (selected == null) return;
+                this.set("value", selected == "yes");
+            },
             _setValue: function (value) {
                 if (value === undefined || value === null || Boolean(value) == null) return;
                 if (value) {

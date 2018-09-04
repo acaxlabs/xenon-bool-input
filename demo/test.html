@@ -1,5 +1,5 @@
 ﻿<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../xenon-bool-input.html" />
+<link rel="import" href="../xenon-two-radio.html" />
 <link rel="import" href="../../xenon-layout/xenon-subheader.html" />
 <link rel="import" href="../../iron-form/iron-form.html">
 <link rel="import" href="../../paper-button/paper-button.html" />
@@ -9,16 +9,16 @@
         <form is="iron-form" id="form">
             <xenon-subheader heading="Has a true value"></xenon-subheader>
             <div>Are you a return app?</div>
-            <xenon-bool-input value="{{app.isReturningApp}}" required></xenon-bool-input>
+            <xenon-two-radio value="{{app.isReturningApp}}" agree="Yes" decline="No" required></xenon-two-radio>
 
             <xenon-subheader heading="Has a false value"></xenon-subheader>
             <div>Do you have a mailing address</div>
-            <xenon-bool-input value="{{app.hasMailingAddress}}" required></xenon-bool-input>
+            <xenon-two-radio value="{{app.hasMailingAddress}}" agree="Agree" decline="Dissagree" required></xenon-two-radio>
 
 
             <xenon-subheader heading="No value provided"></xenon-subheader>
             <div>Need FA?</div>
-            <xenon-bool-input value="{{app.needsFA}}" required></xenon-bool-input>
+            <xenon-two-radio value="{{app.needsFA}}" agree="Hell ya Boi" decline="Nah, dat's ight playa"></xenon-two-radio>
         </form>
 
         <paper-button on-click="validate">Submit form</paper-button>
@@ -35,6 +35,7 @@
             },
             validate: function () {
                 if (!this.$.form.validate());
+                console.log(this.app)
             },
 		});
     </script>
