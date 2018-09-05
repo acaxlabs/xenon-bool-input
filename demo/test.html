@@ -9,16 +9,22 @@
         <form is="iron-form" id="form">
             <xenon-subheader heading="Has a true value"></xenon-subheader>
             <div>Are you a return app?</div>
-            <xenon-two-radio value="{{app.isReturningApp}}" agree="Yes" decline="No" required></xenon-two-radio>
+            <xenon-two-radio value="{{app.isReturningApp}}" agree-text="Yes" decline-text="No" required></xenon-two-radio>
 
             <xenon-subheader heading="Has a false value"></xenon-subheader>
             <div>Do you have a mailing address</div>
-            <xenon-two-radio value="{{app.hasMailingAddress}}" agree="Agree" decline="Dissagree" required></xenon-two-radio>
+            <xenon-two-radio value="{{app.hasMailingAddress}}" agree-text="Agree" decline-text="Dissagree" required></xenon-two-radio>
 
 
             <xenon-subheader heading="No value provided"></xenon-subheader>
             <div>Need FA?</div>
-            <xenon-two-radio value="{{app.needsFA}}" agree="Hell ya Boi" decline="Nah, dat's ight playa"></xenon-two-radio>
+            <xenon-two-radio value="{{app.needsFA}}" agree-text="Hell ya Boi" decline-text="Nah, dat's ight playa"></xenon-two-radio>
+
+            <template is="dom-repeat" items="{{app.people}}">
+                <xenon-subheader heading="Value for {{item.personName}}"></xenon-subheader>
+                <div>Value should be set to {{item.wantsFA}}. No agreeText or declineText is set. Defualt is Yes and No </div>
+                <xenon-two-radio value="{{item.wantsFA}}" required></xenon-two-radio>
+            </template>
         </form>
 
         <paper-button on-click="validate">Submit form</paper-button>
@@ -28,7 +34,20 @@
 			is: "demo-element",
 			properties: {
                 /* This is an example property */
-                app: { type: Object, notify: true, value: { name: "foo", address: "709 Trinty", isReturningApp: true, hasMailingAddress: false, needsFA: null } }
+                app: {
+                    type: Object, notify: true, value: {
+                        name: "foo",
+                        address: "709 Trinty",
+                        isReturningApp: true,
+                        hasMailingAddress: false,
+                        needsFA: null,
+                        people: [
+                            { personName: "will", wantsFA: true },
+                            { personName: "john", wantsFA: false },
+                            { personName: "adam", wantsFA: null }
+                        ]
+                    }
+                }
             },
             ready: function () {
                console.log(this.app)
