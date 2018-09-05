@@ -9,7 +9,7 @@
         <form is="iron-form" id="form">
             <xenon-subheader heading="Has a true value"></xenon-subheader>
             <div>Are you a return app?</div>
-            <xenon-two-radio value="{{app.isReturningApp}}" agree-text="Yes" decline-text="No" required></xenon-two-radio>
+            <xenon-two-radio value="{{app.isReturningApp}}" agree-text="I agree" decline-text="I do not agree" required></xenon-two-radio>
 
             <xenon-subheader heading="Has a false value"></xenon-subheader>
             <div>Do you have a mailing address</div>
@@ -18,7 +18,7 @@
 
             <xenon-subheader heading="No value provided"></xenon-subheader>
             <div>Need FA?</div>
-            <xenon-two-radio value="{{app.needsFA}}" agree-text="Hell ya Boi" decline-text="Nah, dat's ight playa"></xenon-two-radio>
+            <xenon-two-radio value="{{app.needsFA}}" agree-text="Yes Please" decline-text="No thank you"></xenon-two-radio>
 
             <template is="dom-repeat" items="{{app.people}}">
                 <xenon-subheader heading="Value for {{item.personName}}"></xenon-subheader>
