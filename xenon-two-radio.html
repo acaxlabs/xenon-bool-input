@@ -13,8 +13,8 @@
             :host[invalid]>#error{visibility:visible;}
         </style>
         <paper-radio-group selected="{{selected}}" required="{{required}}">
-            <paper-radio-button name="yes" id="yesbtn">[[agree]]</paper-radio-button>
-            <paper-radio-button name="no" id="nobtn">[[decline]]</paper-radio-button>
+            <paper-radio-button name="yes" id="yesbtn">[[agreeText]]</paper-radio-button>
+            <paper-radio-button name="no" id="nobtn">[[declineText]]</paper-radio-button>
         </paper-radio-group>
         <div id="error" class="error-hidden">[[errorMessage]]</div>
     </template>
@@ -22,8 +22,8 @@
         Polymer({
             is: "xenon-two-radio",
             properties: {
-                agree: String,
-                decline: String,
+                agreeText: { type: String, notify: true, value: "Yes" },
+                declineText: { type: String, notify: true, value: "No" },
                 selected: { type: String, notify: true, observer: "_setToggle" },
                 value: { type: Boolean, notify: true, observer: "_setValue", reflectToAttribute: true },
                 errorMessage: { type: String, notify: true, value: "Please select an option" },
